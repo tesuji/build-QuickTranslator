@@ -1,0 +1,25 @@
+name: Check XAML Formatting
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+      - 'service/**'
+    paths:
+      - '**.xaml'
+  pull_request:
+    branches:
+      - 'main'
+      - 'service/**'
+    paths:
+      - '**.xaml'
+
+jobs:
+  check-formatting:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Xaml Styler
+        run: |
+          dotnet build
